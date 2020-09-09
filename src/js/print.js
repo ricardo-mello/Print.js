@@ -59,7 +59,7 @@ function performPrint(iframeElement, params) {
     const handler = () => {
       // Make sure the event only happens once.
       iframeElement.contentWindow.removeEventListener(event, handler)
-      params.onPrintDialogClose()
+      params.onPrintDialogClose && params.onPrintDialogClose()
     }
 
     iframeElement.contentWindow.addEventListener(event, handler)
