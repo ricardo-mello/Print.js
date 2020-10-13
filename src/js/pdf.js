@@ -50,8 +50,14 @@ function createBlobAndPrint (params, printFrame, data) {
   let localPdf = new window.Blob([data], { type: 'application/pdf' })
   localPdf = window.URL.createObjectURL(localPdf)
 
+  params.printableElement = document.createElement('embed')
+  params.printableElement.setAttribute('style', 'width:100%;height:100%')
+
+  // Set our raw html as the printable element inner html content
+  params.printableElement.src = localPdf
+
   // Set iframe src with pdf document url
-  printFrame.setAttribute('src', localPdf)
+  // printFrame.setAttribute('src', localPdf)
 
   Print.send(params, printFrame)
 }
